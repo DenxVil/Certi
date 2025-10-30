@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate Filler</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Certificate Filler</h1>
+        
+        <div class="upload-section">
+            <label for="certificate-upload">Upload Certificate Image:</label>
+            <input type="file" id="certificate-upload" accept="image/*">
+        </div>
+        
+        <div class="canvas-container">
+            <canvas id="certificate-canvas"></canvas>
+        </div>
+        
+        <div class="instructions">
+            <p>Click on the certificate image to add text fields. Type in the fields below to see your text appear on the certificate.</p>
+        </div>
+        
+        <div id="text-inputs" class="text-inputs"></div>
+        
+        <div class="action-buttons">
+            <button id="download-btn">Download Certificate</button>
+            <button id="clear-btn">Clear All Fields</button>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

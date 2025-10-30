@@ -1,0 +1,219 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    max-width: 1200px;
+    width: 100%;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+}
+
+.upload-section {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.upload-section label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #555;
+}
+
+.upload-section input[type="file"] {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 2px solid #667eea;
+    border-radius: 5px;
+    cursor: pointer;
+    background: #f8f9ff;
+    transition: all 0.3s ease;
+}
+
+.upload-section input[type="file"]:hover {
+    background: #667eea;
+    color: white;
+}
+
+.canvas-container {
+    margin: 20px auto;
+    text-align: center;
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    background: #f9f9f9;
+    min-height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#certificate-canvas {
+    max-width: 100%;
+    height: auto;
+    cursor: crosshair;
+    border-radius: 5px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    display: none;
+}
+
+#certificate-canvas.loaded {
+    display: block;
+}
+
+.instructions {
+    text-align: center;
+    margin: 20px 0;
+    color: #666;
+    font-style: italic;
+}
+
+.text-inputs {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 15px;
+}
+
+.text-input-group {
+    background: #f8f9ff;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    transition: all 0.3s ease;
+}
+
+.text-input-group:hover {
+    box-shadow: 0 2px 10px rgba(102, 126, 234, 0.2);
+    border-color: #667eea;
+}
+
+.text-input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+.text-input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.text-input-group input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.text-input-group button {
+    margin-top: 10px;
+    padding: 8px 15px;
+    background: #ff4757;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background 0.3s ease;
+}
+
+.text-input-group button:hover {
+    background: #ff3838;
+}
+
+.action-buttons {
+    margin-top: 30px;
+    text-align: center;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.action-buttons button {
+    padding: 12px 30px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+#download-btn {
+    background: #667eea;
+    color: white;
+}
+
+#download-btn:hover {
+    background: #5568d3;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+}
+
+#clear-btn {
+    background: #f1f2f6;
+    color: #333;
+}
+
+#clear-btn:hover {
+    background: #dfe4ea;
+    transform: translateY(-2px);
+}
+
+#download-btn:disabled,
+#clear-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .container {
+        padding: 20px;
+    }
+    
+    .text-inputs {
+        grid-template-columns: 1fr;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+    }
+    
+    .action-buttons button {
+        width: 100%;
+    }
+}
