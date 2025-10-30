@@ -25,6 +25,13 @@ function handleImageUpload(event) {
     const file = event.target.files[0];
     if (!file) return;
     
+    // Validate file type
+    if (!file.type.startsWith('image/')) {
+        alert('Please upload a valid image file.');
+        event.target.value = '';
+        return;
+    }
+    
     const reader = new FileReader();
     reader.onload = function(e) {
         const img = new Image();
@@ -161,15 +168,24 @@ function redrawCanvas() {
 function downloadCertificate() {
     if (!certificateImage) return;
     
-    // Create a temporary link and trigger download
-    canvas.toBlob(function(blob) {
-        const url = URL.createObjectURL(blob);
+    // Try toBlob first, fallback to toDataURL for older browsers
+    if (canvas.toBlob) {
+        canvas.toBlob(function(blob) {
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.download = 'certificate.png';
+            link.href = url;
+            link.click();
+            URL.revokeObjectURL(url);
+        });
+    } else {
+        // Fallback for older browsers
+        const url = canvas.toDataURL('image/png');
         const link = document.createElement('a');
         link.download = 'certificate.png';
         link.href = url;
         link.click();
-        URL.revokeObjectURL(url);
-    });
+    }
 }
 
 // Clear all text fields
