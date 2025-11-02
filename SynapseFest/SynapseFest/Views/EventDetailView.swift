@@ -11,24 +11,13 @@ struct EventDetailView: View {
     let event: Event
     @Environment(\.openURL) var openURL
     
-    var categoryColor: Color {
-        switch event.category {
-        case .cultural: return .orange
-        case .technical: return .blue
-        case .sports: return .green
-        case .literary: return .purple
-        case .arts: return .pink
-        case .medical: return .red
-        }
-    }
-    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
                 // Header
                 ZStack(alignment: .bottomLeading) {
                     LinearGradient(
-                        gradient: Gradient(colors: [categoryColor.opacity(0.8), categoryColor]),
+                        gradient: Gradient(colors: [event.category.color.opacity(0.8), event.category.color]),
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     )
@@ -82,7 +71,7 @@ struct EventDetailView: View {
                                     HStack(alignment: .top, spacing: 12) {
                                         Text("\(index + 1).")
                                             .font(.system(size: 15, weight: .semibold))
-                                            .foregroundColor(categoryColor)
+                                            .foregroundColor(event.category.color)
                                         
                                         Text(rule)
                                             .font(.system(size: 15))
@@ -99,14 +88,14 @@ struct EventDetailView: View {
                             VStack(alignment: .leading, spacing: 8) {
                                 HStack {
                                     Image(systemName: "person.fill")
-                                        .foregroundColor(categoryColor)
+                                        .foregroundColor(event.category.color)
                                     Text(contactPerson)
                                         .font(.system(size: 15))
                                 }
                                 
                                 HStack {
                                     Image(systemName: "envelope.fill")
-                                        .foregroundColor(categoryColor)
+                                        .foregroundColor(event.category.color)
                                     Text(contactEmail)
                                         .font(.system(size: 15))
                                         .foregroundColor(.blue)
@@ -135,7 +124,7 @@ struct EventDetailView: View {
                         }
                         .foregroundColor(.white)
                         .padding()
-                        .background(categoryColor)
+                        .background(event.category.color)
                         .cornerRadius(12)
                     }
                 }

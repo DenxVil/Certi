@@ -27,7 +27,7 @@ struct EventListView: View {
                         selectedCategory = nil
                     }
                     
-                    ForEach([Event.EventCategory.cultural, .technical, .sports, .literary, .arts, .medical], id: \.self) { category in
+                    ForEach(Event.EventCategory.allCases, id: \.self) { category in
                         CategoryButton(title: category.rawValue, isSelected: selectedCategory == category) {
                             selectedCategory = category
                         }
@@ -75,17 +75,6 @@ struct CategoryButton: View {
 struct EventCardView: View {
     let event: Event
     
-    var categoryColor: Color {
-        switch event.category {
-        case .cultural: return .orange
-        case .technical: return .blue
-        case .sports: return .green
-        case .literary: return .purple
-        case .arts: return .pink
-        case .medical: return .red
-        }
-    }
-    
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
@@ -94,14 +83,14 @@ struct EventCardView: View {
                     .foregroundColor(.white)
                     .padding(.horizontal, 12)
                     .padding(.vertical, 4)
-                    .background(categoryColor)
+                    .background(event.category.color)
                     .cornerRadius(12)
                 
                 Spacer()
                 
-                Image(systemName: categoryIcon(for: event.category))
+                Image(systemName: event.category.icon)
                     .font(.system(size: 24))
-                    .foregroundColor(categoryColor)
+                    .foregroundColor(event.category.color)
             }
             
             Text(event.name)
@@ -142,17 +131,6 @@ struct EventCardView: View {
         .background(Color(.systemBackground))
         .cornerRadius(16)
         .shadow(color: Color.black.opacity(0.1), radius: 8, x: 0, y: 4)
-    }
-    
-    func categoryIcon(for category: Event.EventCategory) -> String {
-        switch category {
-        case .cultural: return "music.note"
-        case .technical: return "cpu"
-        case .sports: return "sportscourt"
-        case .literary: return "book.fill"
-        case .arts: return "paintbrush.fill"
-        case .medical: return "cross.case.fill"
-        }
     }
 }
 
